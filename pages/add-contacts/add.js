@@ -27,6 +27,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    //这里是带参数跳转，如果是已经存在的联系人点击编辑跳转这里直接填入信息
+
     if(options.params && options.params.length>0){
       console.log(options.params)
       let contact = JSON.parse(options.params)
@@ -119,13 +122,14 @@ Page({
     this.data.contact['remarks'] = e.detail
     console.log('[field change]',this.data.contact)
   },
-
+  //清空输入
   clearInput:function(){
     this.setData({
       value:''
     })
   },
 
+    //表单提交以及格式判断
   formSubmit(event){
     console.log('[field submit]',event.detail.value)
     let form = event.detail.value
@@ -164,7 +168,7 @@ Page({
         type:'fail'
       })
     }
-    console.log('运行到此处')
+    //发送提交请求，调用添加联系人的函数
     bus.emit('contactSubmit', this.data.contact).then(data=>{
       console.log('data',data)
       
@@ -176,10 +180,12 @@ Page({
     
   },
 
+
   formReset(event){
     console.log('[field reset]',event)
   },
 
+  //点击保存到手机功能
   clickSaveToPhone(e){
     console.log(this.data.tel1)
     wx.addPhoneContact({

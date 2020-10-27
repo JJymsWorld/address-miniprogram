@@ -2,6 +2,7 @@ var eventBus = require('utils/eventBus.js')
 var Pinyin = require('utils/pinyin.js')
 var bus = eventBus.eventBus
 var contactList = []
+var pyin = require('pages/utils/pinyin.js')
 
 
 
@@ -52,32 +53,39 @@ bus.on('contactsClickContact', (contact) => {
 bus.on('contactSubmit', (contact) => {
   console.log('保存联系人', contact)
   //增加拼音索引
-  let pinyins = Pinyin.parse(contact.name)
-  let pyFirst = "" //第一个字符的首字母
-  let pyFirstLetter = "" //首字母
-  let pinyin = "" //全拼
-  for (let i in pinyins) {
+  // let pinyins = Pinyin.parse(contact.name)
+  let pinyins = pyin.get(contact.name)
+  console.log('pyin',pyin.getIndex(contact.name))
+  
+  let pyFirst = pyin.getIndex(contact.name)
+  let pyFirstLetter = pinyins.l
+  let pinyin = pinyins.p
+  // let pyFirst = "" //第一个字符的首字母
+  // let pyFirstLetter = "" //首字母
+  // let pinyin = "" //全拼
+  // for (let i in pinyins) {
 
-    let py = pinyins[i]
-    console.log(i, py)
-    if (i == 0) {
-      //第一个字符
-      if (py.type != 2 && py.type != 1) {
-        //不为中文
-        pyFirst = '#'
+  //   let py = pinyins[i]
+  //   console.log(i, py)
+  //   if (i == 0) {
+  //     //第一个字符
+  //     if (py.type != 2 && py.type != 1) {
+  //       //不为中文
+  //       pyFirst = '#'
 
-      } else {
-        pyFirst = py.target.substr(0, 1).toUpperCase()
-        pinyin += py.target
-        pyFirstLetter += py.target.substr(0, 1).toUpperCase()
-      }
-    } else {
-      if (py.type == 2 || py.type == 1) {
-        pinyin += py.target
-        pyFirstLetter += py.target.substr(0, 1).toUpperCase()
-      }
-    }
-  }
+  //     } else {
+  //       pyFirst = py.target.substr(0, 1).toUpperCase()
+  //       pinyin += py.target
+  //       pyFirstLetter += py.target.substr(0, 1).toUpperCase()
+  //       console.log(pyFirstLetter)
+  //     }
+  //   } else {
+  //     if (py.type == 2 || py.type == 1) {
+  //       pinyin += py.target
+  //       pyFirstLetter += py.target.substr(0, 1).toUpperCase()
+  //     }
+  //   }
+  // }
   contact.pyFirst = pyFirst
   contact.pyFirstLetter = pyFirstLetter
   contact.pinyin = pinyin

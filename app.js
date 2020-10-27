@@ -2,6 +2,7 @@
 var eventBus = require('utils/eventBus.js');
 var businit = require('bus-contacts.js') 
 
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
