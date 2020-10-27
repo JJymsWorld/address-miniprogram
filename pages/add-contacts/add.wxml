@@ -1,0 +1,37 @@
+
+
+<van-toast id="van-toast" />
+
+<view>
+  <demo-block title='信息'></demo-block>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view>
+      <view>
+        <van-cell-group>
+          <van-field name="name" bind:change="nameChange" value="{{name}}" label="姓名" type="textarea" placeholder="请输入姓名" rows="1" autosize
+            border="{{ false }}" />
+        </van-cell-group>
+        <van-cell-group>
+          <van-field name="tel1" bind:change="tel1Change" value="{{tel1}}" label="电话1" type="textarea" placeholder="请输入电话1" rows="1" autosize
+            border="{{ false }}" />
+        </van-cell-group>
+        <van-cell-group>
+          <van-field name="tel2" bind:change="tel2Change" value="{{tel2}}" label="电话2" type="textarea" placeholder="请输入电话2" rows="1" autosize
+            border="{{ false }}" />
+        </van-cell-group>
+        <van-cell-group>
+          <van-field name="tel3" bind:change="tel3Change" value="{{tel3}}" label="电话3" type="textarea" placeholder="请输入电话3" rows="1" autosize
+            border="{{ false }}" />
+        </van-cell-group>
+        <van-cell-group>
+          <van-field name="ramarks" bind:change="remarksChange" value="{{remarks}}" label="联系人备注" type="textarea" placeholder="请输入备注" rows="1" autosize
+            border="{{ false }}" />
+        </van-cell-group>
+      </view>
+      <view class="add-btn">
+        <van-button type="primary" size="large"  custom-class="demo-margin-bottom" formType="submit">保存</van-button>
+        <van-button type="primary" size="large"  custom-class="demo-margin-bottom" class="save-btn" bind:tap="clickSaveToPhone">保存到手机</van-button>
+      </view>
+    </view>
+  </form>
+</view>

@@ -1,0 +1,11 @@
+/* pages/add-contacts/add.wxss */
+
+.add-btn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+.save-btn{
+  margin-top: 15px;
+}
